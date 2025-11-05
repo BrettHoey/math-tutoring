@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Math Tutoring | Algebra to Calculus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            background: #0f0f0f;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: #f5576c;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s backwards;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(245, 87, 108, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 50px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .subject-card {
+            background: #1a1a1a;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+            border: 2px solid #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .subject-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.3);
+            border-color: #f5576c;
+        }
+
+        .subject-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .subject-card h3 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .subject-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .subject-card li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            transition: transform 0.2s ease;
+            color: #b0b0b0;
+        }
+
+        .subject-card li:hover {
+            transform: translateX(5px);
+        }
+
+        .subject-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4facfe;
+            font-weight: bold;
+        }
+
+        .testimonial-section {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: white;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><text x="10" y="50" font-size="40" opacity="0.05">∫</text><text x="60" y="80" font-size="30" opacity="0.05">π</text></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form h2 {
+            background: linear-gradient(135deg, #4facfe 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.2em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: #0f0f0f;
+            color: #e0e0e0;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
+        }
+
+        .features {
+            background: #1a1a1a;
+            padding: 80px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: #0f0f0f;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 2px solid #2a2a2a;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        .feature-item:nth-child(1) .feature-icon { animation-delay: 0s; }
+        .feature-item:nth-child(2) .feature-icon { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) .feature-icon { animation-delay: 0.4s; }
+        .feature-item:nth-child(4) .feature-icon { animation-delay: 0.6s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-item h3 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-item p {
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .process-section {
+            padding: 80px 20px;
+            background: #0f0f0f;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.3);
+        }
+
+        .process-step h3 {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .process-step p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+
+            .contact-form {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Math Skills</h1>
+            <p>Expert 1-on-1 Virtual Tutoring | Algebra Through Advanced Calculus</p>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                Start Learning Today
+            </button>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Online</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1-on-1</span>
+                    <span class="stat-label">Personalized</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Flexible Scheduling</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Subjects We Master</h2>
+        <p class="section-subtitle">Comprehensive coverage across all major math topics</p>
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>📐 Algebra</h3>
+                    <ul>
+                        <li>Algebra 1 - Foundations</li>
+                        <li>Algebra 2 - Advanced Topics</li>
+                        <li>Algebra 3 - Abstract Algebra</li>
+                        <li>Linear Equations & Inequalities</li>
+                        <li>Polynomials & Factoring</li>
+                        <li>Rational Expressions</li>
+                        <li>Systems of Equations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>📊 Pre-Calculus</h3>
+                    <ul>
+                        <li>Trigonometry & Identities</li>
+                        <li>Functions & Graphs</li>
+                        <li>Exponentials & Logarithms</li>
+                        <li>Conic Sections</li>
+                        <li>Polynomial Functions</li>
+                        <li>Rational Functions</li>
+                        <li>Vectors & Matrices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>∫ Calculus</h3>
+                    <ul>
+                        <li>Calculus 1 - Limits & Derivatives</li>
+                        <li>Calculus 2 - Integration Techniques</li>
+                        <li>Calculus 3 - Multivariable Calculus</li>
+                        <li>Applications & Word Problems</li>
+                        <li>Optimization Problems</li>
+                        <li>Series & Sequences</li>
+                        <li>Differential Equations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>🎓 SAT Math Prep</h3>
+                    <ul>
+                        <li>Heart of Algebra</li>
+                        <li>Problem Solving & Data Analysis</li>
+                        <li>Passport to Advanced Math</li>
+                        <li>Test-Taking Strategies</li>
+                        <li>Time Management Skills</li>
+                        <li>Practice Tests & Review</li>
+                        <li>Score Improvement Plans</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>📐 Geometry</h3>
+                    <ul>
+                        <li>Euclidean Geometry</li>
+                        <li>Proofs & Theorems</li>
+                        <li>Triangles & Polygons</li>
+                        <li>Circles & Arcs</li>
+                        <li>Area & Volume</li>
+                        <li>Coordinate Geometry</li>
+                        <li>Transformations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-card-content">
+                    <h3>🔢 Advanced Topics</h3>
+                    <ul>
+                        <li>Linear Algebra</li>
+                        <li>Discrete Mathematics</li>
+                        <li>Number Theory</li>
+                        <li>Mathematical Proofs</li>
+                        <li>Abstract Mathematics</li>
+                        <li>Complex Numbers</li>
+                        <li>Competition Math</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="process-section">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Getting started is simple and straightforward</p>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Book Your Session</h3>
+                <p>Fill out the form below with your availability and math topic needs</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Schedule a Time</h3>
+                <p>We'll reach out within 24 hours to confirm your virtual session</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Join Online</h3>
+                <p>Connect from anywhere using your computer, tablet, or phone</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Master Math</h3>
+                <p>Get personalized instruction tailored to your learning style</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2 class="section-title">Why Students Love Learning With Us</h2>
+        <p class="section-subtitle">Effective, flexible, and student-focused tutoring</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">💻</div>
+                <h3>100% Virtual</h3>
+                <p>Learn from anywhere with flexible online sessions. No commute needed - just log in and start learning.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>Personalized Approach</h3>
+                <p>Every student learns differently. We adapt our teaching methods to match your unique learning style.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <h3>Build Confidence</h3>
+                <p>Move from confusion to clarity with step-by-step guidance and targeted practice problems.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⏰</div>
+                <h3>Flexible Scheduling</h3>
+                <p>Book sessions that fit your busy schedule - evenings, weekends, and last-minute exam prep available.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial-section">
+        <h2 class="section-title" style="color: white;">Student Success Stories</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"I went from struggling with basic algebra to acing my Calculus exams. The personalized approach made all the difference!"</div>
+                <div class="testimonial-author">- Sarah M., College Student</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The SAT math prep helped me improve my score by 150 points. Now I'm headed to my dream school!"</div>
+                <div class="testimonial-author">- James T., High School Senior</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Finally, math makes sense! The virtual sessions are so convenient and the explanations are crystal clear."</div>
+                <div class="testimonial-author">- Emily R., High School Junior</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <div class="contact-form">
+            <h2>Book Your Virtual Session</h2>
+            <form id="contactForm" action="https://formsubmit.co/noeynrett@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Math Tutoring Booking Request">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://claude.ai/thanks">
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject Needed *</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="algebra1">Algebra 1</option>
+                        <option value="algebra2">Algebra 2</option>
+                        <option value="algebra3">Algebra 3</option>
+                        <option value="geometry">Geometry</option>
+                        <option value="precalc">Pre-Calculus</option>
+                        <option value="calc1">Calculus 1</option>
+                        <option value="calc2">Calculus 2</option>
+                        <option value="calc3">Calculus 3</option>
+                        <option value="sat">SAT Math</option>
+                        <option value="linear">Linear Algebra</option>
+                        <option value="discrete">Discrete Mathematics</option>
+                        <option value="other">Other Math Topic</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Preferred Days/Times</label>
+                    <textarea id="availability" name="availability" placeholder="e.g., Weekday evenings after 6pm, Saturday mornings, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Goals</label>
+                    <textarea id="message" name="message" placeholder="What are you hoping to achieve? Any specific topics you're struggling with? Upcoming tests or deadlines?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form will now submit directly to your email via FormSubmit
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // Let the form submit naturally to FormSubmit
+            // No need to prevent default or show custom alert
+        });
+    </script>
+</body>
+</html>
